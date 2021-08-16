@@ -1,0 +1,57 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+{% load i18n %}
+
+<!-- custom filter module -->
+{% load lang_switcher %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+
+{% block extrahead %}
+    <link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin/main_admin.css' %}"/>
+
+    <!-- CSS FILES LINKS -->
+
+    {% if LANGUAGE_CODE == 'en' %}
+        <link rel="stylesheet" href="{% static 'css/admin/lang/en-admin.css' %}">
+    {% endif %}
+
+    {% if LANGUAGE_CODE == 'fa' %}
+        <link rel="stylesheet" href="{% static 'css/admin/lang/fa-admin.css' %}">
+    {% endif %}
+
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'css/admin/lang/ar-admin.css' %}">
+    {% endif %}
+    
+    <!-- END OF CSS FILES LINKS -->
+
+{% endblock %}
+
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+    {% endif %}
+    <a href="{{ request|switch_lang:'en' }}">
+        {% translate 'EN' %}
+    </a> /
+    <a href="{{ request|switch_lang:'fa' }}">
+        {% translate 'FA' %}
+    </a> /
+    <a href="{{ request|switch_lang:'ar' }}">
+        {% translate 'AR' %}
+    </a> /
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+    {% endif %}
+    <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+{% endblock %}

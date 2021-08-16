@@ -1,0 +1,162 @@
+{% load static %}
+{% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load lang_switcher %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/nav/main-navbar.css' %}">
+
+    <!-- Add transparency for the navbar only for home page -->
+    {% with "/"|add:LANGUAGE_CODE|add:"/" as address %}
+        {% if request.get_full_path == address %}
+        <link rel="stylesheet" href="{% static 'css/nav/transparent-navbar.css' %}">
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+
+<nav class="nav" id="nav">
+    <div class="nav-center">
+        <div class="nav-header">
+            {% cache cache_ttl logo %}
+            <img src="{% static 'images/introduction/logo.png' %}" class="nav-logo" alt="nav logo" />
+            {% endcache logo %}
+            <div class="lang-dropdown  dropdown">
+                <button class="dropbtn"> <span id="selected-lang">en</span> <span><i class="fas fa-angle-down"></i></span> </button>
+                <div class="dropdown-content lang-content">
+                    <a id="lang-en" href="{{ request|switch_lang:'en' }}">{% translate 'EN' %}</a>
+                    <a id="lang-fa" href="{{ request|switch_lang:'fa' }}">{% translate 'FA' %}</a>
+                    <a id="lang-ar" href="{{ request|switch_lang:'ar' }}">{% translate 'AR' %}</a>
+                </div>
+            </div>
+            <button class="nav-btn" id="nav-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-link-container">
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'introduction:company' %}">{% translate 'home' %}</a>
+                </li>
+                <li>
+                    <!-- <a href="{% url 'store:product_all' %}">{% translate 'shop' %}</a> -->
+                    <a href="{% url 'store:product_all' %}">{% translate 'products' %}</a>
+                </li>
+                <li>
+                    <a href="#">{% translate 'solutions' %}</a>
+                </li>
+                <li>
+                    <a href="#">{% translate 'about' %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'introduction:contact' %}">{% translate 'contact' %}</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <img src="{{avatar.url}}" class="profile-picture dropbtn">
+                        <!-- <button class="dropbtn">Dropdown</button> -->
+                        <div class="dropdown-content">
+                            <a href="{% url 'accounts:edit_profile' %}">{% translate 'profile' %}</a>
+                            <a type="button" role="button" href="{% url "basket:basket_summary" %}"
+                                class="">
+
+                                {% with total_qty=basket|length %}
+                                    <div id="basket-qty" class="d-inline-flex">
+                                        {% if total_qty > 0 %}
+                                            {{ total_qty }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </div>
+                                {% endwith %} 
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-cart3" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                                {% translate 'cart' %}
+                            </a>
+                            <a href="{% url 'accounts:logout' %}">{% translate 'logout' %}</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-mobile-links">
+                        <a href="{% url 'accounts:edit_profile' %}">{% translate 'profile' %}</a>
+                    </li>
+                    <li class="nav-mobile-links">
+                        <a type="button" role="button" href="{% url "basket:basket_summary" %}"
+                                class="">
+
+                                {% with total_qty=basket|length %}
+                                    <div id="basket-qty" class="d-inline-flex">
+                                        {% if total_qty > 0 %}
+                                            {{ total_qty }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </div>
+                                {% endwith %} 
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-cart3" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                                {% translate 'cart' %}
+                            </a>
+                    </li>
+                    <li class="nav-mobile-links">
+                        <a href="{% url 'accounts:logout' %}">{% translate 'logout' %}</a>
+                    </li>
+                    <li class="nav-mobile-links">
+                        <a id="lang-en" href="{{ request|switch_lang:'en' }}">{% translate 'EN' %}</a>
+                        <a id="lang-fa" href="{{ request|switch_lang:'fa' }}">{% translate 'FA' %}</a>
+                        <a id="lang-ar" href="{{ request|switch_lang:'ar' }}">{% translate 'AR' %}</a>
+                    </li>
+                {% else %}
+                <li class="btn">
+                    <a href="{% url 'accounts:login' %}">{% translate 'login' %}</a>
+                </li>
+                <li class="nav-mobile-links">
+                    <a id="lang-en" href="{{ request|switch_lang:'en' }}">{% translate 'EN' %}</a>
+                    <a id="lang-fa" href="{{ request|switch_lang:'fa' }}">{% translate 'FA' %}</a>
+                    <a id="lang-ar" href="{{ request|switch_lang:'ar' }}">{% translate 'AR' %}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- language control -->
+<script>
+    const language = '{{ LANGUAGE_CODE }}';
+    const langLink = document.getElementById(`lang-${language}`);
+    const currentLang = document.getElementById('selected-lang');
+    currentLang.innerText = langLink.innerText.toLowerCase();
+
+    // on <768px pages
+    const lang_links = document.querySelectorAll(".nav-mobile-links:nth-last-of-type(1)")[0].querySelectorAll('a');
+    lang_links.forEach(l => {
+        if (l.id === `lang-${language}`) {
+            l.classList.add('active-lang');
+        }
+    })
+</script>
+
+
+<!-- nav toggle -->
+<script>
+// select button and links
+const navBtn = document.getElementById("nav-btn");
+const links = document.querySelector(".nav-link-container");
+// add event listener
+navBtn.addEventListener("click", () => {
+    links.classList.toggle("show-links");
+});
+</script>

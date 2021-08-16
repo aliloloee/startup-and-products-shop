@@ -1,0 +1,7 @@
+.profile-picture {
+    height: 30px;
+    width: 30px;
+    background-color: #000;
+    border-radius: 50%;
+    display: inline-block;
+}

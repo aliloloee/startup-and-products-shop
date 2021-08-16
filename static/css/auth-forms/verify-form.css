@@ -1,0 +1,26 @@
+.resend-box {
+    border-radius: 20px;
+    margin: 5px 0;
+    width: 100%;
+    border: 1px solid #999;
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.resend-box input {
+    margin: 0 !important;
+}
+
+.resend-box input {
+    border:none;
+    flex-grow: 2;
+}
+
+.resend-box button {
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+}

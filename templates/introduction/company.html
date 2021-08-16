@@ -1,0 +1,368 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load lang_switcher %}
+
+
+{% block links %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link rel="stylesheet" href="{% static 'css/introduction/company.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css"/>
+
+{% endblock %}
+
+
+{% block title %}{% translate 'Home' %}{% endblock %}
+{% block content %}
+
+
+
+
+<!-- Scroll up button -->
+<div class="scroll-up category" data-scroll="#header">
+    <i class="fas fa-chevron-up"></i>
+</div>
+
+{% include 'base/main-navbar.html' %}
+
+
+<div class="brand" id="header">
+
+    <div class="content">
+        <div class="content-info">
+        
+            <div class="category-list">
+                <div class="category" data-scroll="#services">
+                    <img src="{% static 'images/introduction/services.png' %}" alt="picture">
+                    <p>{% translate 'Services' %}</p>
+                </div>
+                <div class="category" data-scroll="#benefits">
+                    <img src="{% static 'images/introduction/benefits.png' %}" alt="picture">
+                    <p>{% translate 'Benefits' %}</p>
+                </div>
+                <div class="category" data-scroll="#testimonials">
+                    <img src="{% static 'images/introduction/team.png' %}" alt="picture">
+                    <p>{% translate 'Team' %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-0">
+        {% cache cache_ttl banner LANGUAGE_CODE %}
+        <div id="carousel" class="carousel slide hero-slides" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li class="active" data-target="#carousel" data-slide-to="0"></li>
+                {% with banners|length|add:"-1" as l %}
+                {% with ''|center:l as range %}
+                {% for _ in range %}
+                <li data-target="#carousel" data-slide-to="{{ forloop.counter }}"></li>
+                {% endfor %}
+                {% endwith %}
+                {% endwith %}
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+
+                {% for banner in banners %}
+                {% if forloop.counter == 1 %}
+                <div class="carousel-item active" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url({{banner.image.url}} );">
+                    <div class="container h-100 d-md-block">
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6 carousel-content">
+                            <div class="caption animated fadeIn">
+                                <h2 class="animated fadeInLeft">{{ banner.title|title }}</h2>
+                                <p class="animated fadeInRight">{{ banner.description }}</p>
+                                <a class="animated fadeInUp btn delicious-btn" href="#">Learn more</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url({{banner.image.url}});">
+                    <div class="container h-100 d-md-block">
+                        <div class="row align-items-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6 carousel-content">
+                            <div class="caption animated fadeIn">
+                                <h2 class="animated fadeInLeft">{{ banner.title|title }}</h2>
+                                <p class="animated fadeInRight">{{ banner.description }}</p>
+                                <a class="animated fadeInUp btn delicious-btn" href="#">Learn more</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        {% endcache carousel %}
+    </div>
+</div>
+
+<section class="services section" id="services">
+    <div class="section-title">
+        <h2><span>{% translate 'Services' %}</span></h2>
+        <h4>{% translate 'what we provide' %}</h4>
+    </div>
+    <div class="section-center services-center">
+        {% cache cache_ttl service LANGUAGE_CODE %}
+        {% for ser in services %}
+        <article class="service">
+            <video class="service-video" controls>
+                <source src="{{ ser.clip.url }}" type="video/mp4">
+            </video>
+            <div class="service-body">
+                <div class="service-title">
+                    <h3>{{ ser.title|title }}</h3>
+                </div>
+                <div class="service-text">
+                    <p>{{ ser.description|safe|truncatewords:"30"|linebreaks }}</p>
+                </div>
+            </div>
+            <div class="service-footer">
+                <a href="#" class="btn">{% translate 'read more' %}</a>
+                <a href="#" class="btn">{% translate 'buy now' %}</a>
+            </div>
+        </article>
+        {% endfor %}
+        {% endcache services %}
+    </div>
+</section>
+
+<section class="benefits section" id="benefits">
+    <div class="section-center benefits-center">
+
+        {% cache cache_ttl benefit LANGUAGE_CODE %}
+        {% for benefit in benefits %}
+        <article class="benefit">
+            <img src="{{ benefit.image.url }}">
+            <p>{{ benefit.description|title }}</p>
+        </article>
+        {% endfor %}
+        {% endcache benefits %}
+
+    </div>
+</section>
+
+<section class="section testimonials" id="testimonials">
+    <div class="section-title">
+        <h2><span>{% translate 'Team' %}</span></h2>
+        <h4>{% translate 'who we are' %}</h4>
+    </div>
+
+    <div class="section-center testimonials-carousel-wrap">
+        <div class="listing-carousel-button listing-carousel-button-next">
+            <i class="fas fa-caret-right" style="color: #fff"></i>
+        </div>
+        <div class="listing-carousel-button listing-carousel-button-prev">
+            <i class="fas fa-caret-left" style="color: #fff"></i>
+        </div>
+
+        <div class="testimonials-carousel">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                {% cache cache_ttl teammember LANGUAGE_CODE %}
+                {% for employee in teammembers %}
+                <article class="swiper-slide">
+                    <div class="testi-item">
+
+                        <div class="testi-avatar">
+                            <img src="{{ employee.image.url }}">
+                        </div>
+
+                        <div class="testimonials-text">
+                            <p>{{ employee.introduction|truncatewords:"30"|linebreaks }}</p>
+                            <a href="#" class="text-link"></a>
+                            <div class="testimonials-avatar">
+                                <h3>{{ employee.fullname }}</h3>
+                                <h4>{{ employee.role }}</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+                {% endfor %}
+                {% endcache team %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tc-pagination"></div>
+    </div>
+</section>
+
+
+{% include 'base/footer.html' %}
+
+
+{% endblock %}
+
+{% block js-files %}
+<!-- carousel -->
+<script>
+$(document).ready(function() {
+    $('.carousel').carousel({
+        pause:false,
+        interval: 5000
+    })
+});
+</script>
+
+
+<!-- for sticky navbar -->
+<script>
+    const nav = document.querySelector('#nav');
+    const nextElement = nav.nextElementSibling
+    var sticky = nav.offsetTop;
+    window.onscroll = () => {
+        this.scrollY > sticky ? nav.classList.add('sticky') : nav.classList.remove('sticky');
+        if (this.scrollY > sticky){
+            nav.classList.add('sticky');
+            nextElement.classList.add('next-element');
+        } else {
+            nav.classList.remove('sticky');
+            nextElement.classList.remove('next-element');
+        }
+    }
+</script>
+
+<!-- nav gets expanded -->
+<script>
+    const navbar_button = document.getElementById('nav-btn');
+    navbar_button.addEventListener('click', e => {
+        if(nav.classList.contains('darken')){
+            nav.classList.remove('darken');
+        } else {
+            nav.classList.add('darken');
+        }
+    })
+</script>
+
+<!-- remove darkened background from navbar if page expanded instantly -->
+<script>
+    window.addEventListener('resize', e =>{
+        if (window.innerWidth > 768) {
+            nav.classList.remove('darken');
+        } else {
+            if (nav.offsetHeight > 100) {
+                nav.classList.add('darken');
+            }
+        }
+    })
+</script>
+
+
+<!-- language control -->
+<!-- <script>
+    const language = '{{ LANGUAGE_CODE }}';
+    const langLink = document.getElementById(`lang-${language}`);
+    langLink.classList.add('active');
+</script> -->
+
+<!-- Tooltip -->
+<!-- <script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script> -->
+
+<!-- swiper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
+
+<!-- smooth scroll  -->
+<script>
+    const scroll_links = document.querySelectorAll('.category');
+    scroll_links.forEach(scroll_link => {
+        scroll_link.addEventListener('click', e => {
+            e.preventDefault();
+            const id = scroll_link.dataset.scroll.slice(1)
+            const element = document.getElementById(id);
+
+            let position = element.offsetTop + -76;
+
+            window.scrollTo({
+                left: 0,
+                // top: element.offsetTop,
+                top: position,
+                behavior: "smooth"
+            });
+
+        })
+    })
+</script>
+
+<!-- scroll up to header  -->
+<script>
+    const scrollUp = document.querySelector('.scroll-up');
+    const initialOffset = document.getElementById('services').offsetTop;
+
+    window.addEventListener('scroll', e => {
+        e.preventDefault;
+        if (window.scrollY >= initialOffset/2) {
+            scrollUp.classList.add('show');
+        } else {
+            scrollUp.classList.remove('show');
+        }
+    })
+
+</script>
+
+<!-- testimonials -->
+<script>
+    //   all ------------------
+    function initParadoxWay() {
+        "use strict";
+
+        if ($(".testimonials-carousel").length > 0) {
+            var j2 = new Swiper(".testimonials-carousel .swiper-container", {
+                preloadImages: false,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                grabCursor: true,
+                mousewheel: false,
+                centeredSlides: true,
+                pagination: {
+                    el: '.tc-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: '.listing-carousel-button-next',
+                    prevEl: '.listing-carousel-button-prev',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                    
+                }
+            });
+        }
+        
+    }
+    
+    //   Init All ------------------
+    $(document).ready(function () {
+        initParadoxWay();
+    });
+</script>
+
+
+{% endblock %}

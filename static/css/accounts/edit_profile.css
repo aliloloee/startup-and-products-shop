@@ -1,0 +1,121 @@
+
+/*
+=============== 
+Profile forms
+===============
+*/
+.light-bg {
+    background: #bfbba60b;
+}
+
+.profile-forms form:first-child label {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.profile-forms form:first-child button {
+    background: green;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+
+#avatar-form img {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#avatar-form .dropdown {
+    position: relative;
+}
+
+#avatar-form .dropbtn {
+    position: absolute;
+    right: 70%;
+    bottom: 20%;
+    transform: translate(50%, 50%);
+    padding: 0.25rem 0.75rem;
+    background: var(--clr-white);
+    color: var(--clr-primary-1);
+    letter-spacing: 1px;
+}
+
+#avatar-form .dropbtn:hover {
+    background: var(--clr-white);
+    color: var(--clr-primary-1);
+}
+
+#avatar-form .dropbtn .fas {
+    margin-right: 10px;
+}
+
+#avatar-form .avatar-content #avatar-submit {
+    display: none;
+}
+
+#avatar-form .avatar-content {
+    display: none;
+    position: absolute;
+    left: 10%;
+    background-color: var(--clr-white);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 500;
+    border-radius: 8px;
+}
+
+#avatar-form .avatar-content label{
+    display: block !important;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1rem;
+    font-family: var(--ff-primary);
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: inherit;
+    border-radius: 8px;
+    padding: 4px 16px !important;
+}
+
+#avatar-form .avatar-content #id_avatar{
+    display: none;
+}
+
+
+#avatar-form .avatar-content input{
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 4px 16px !important;
+    text-decoration: none;
+    color: var(--clr-primary-1);
+    border-radius: 8px;
+}
+
+#avatar-form .avatar-content label:hover, #avatar-form .avatar-content input:hover{
+    color: var(--clr-white);
+    background-color: rgb(46, 46, 248);
+}
+
+#avatar-form .dropdown-content a {
+    padding: 0 !important;
+}
+
+/*
+===============
+Responsiveness
+===============
+*/
+
+#avatar-form > label {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    
+    #avatar-form > label {
+        display: block;
+    }
+
+}

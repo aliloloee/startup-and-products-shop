@@ -1,0 +1,144 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}{% translate 'order info' %}{% endblock %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/orders/order_fill_form.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'base/main-navbar.html' %}
+
+<div class="section order-container">
+    <div class="section-title">
+        <h2>{% translate 'The <span>Order</span>' %}</h2>
+    </div>
+
+    <div class="section-center container">
+        {% if form.errors %}
+                {% for field in form %}
+                    {% if field.errors %}
+                    <div class="alert alert-error" role="alert">
+                        {{ field.errors|striptags }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small font-weight-bold" for="id_fullname">{% translate 'Fullname' %}</label>
+                                    {{ form.fullname|attr:"placeholder:Fullname"|attr:"class:form-control mb-3" }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small font-weight-bold" for="id_phone">{% translate 'Phone number' %}</label>
+                                    {{ form.phone|attr:"placeholder:Phone number"|attr:"class:form-control mb-3" }}
+                                </div>
+                            </div>
+                
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="small font-weight-bold" for="id_province">{% translate 'Province' %}</label>
+                                    {{ form.province|attr:"placeholder:Province"|attr:"class:form-control mb-3" }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="small font-weight-bold" for="id_city">{% translate 'City' %}</label>
+                                    {{ form.city|attr:"placeholder:City"|attr:"class:form-control mb-3" }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="small font-weight-bold" for="id_post_code">{% translate 'Post code' %}</label>
+                                {{ form.post_code|attr:"placeholder:Post code"|attr:"class:form-control mb-3" }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label class="small font-weight-bold">{{ form.address.label}}
+                                    </label>
+                                {{ form.address|attr:"placeholder:Address"|attr:"class:form-control"|attr:"rows:5" }}
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="small font-weight-bold">{{ form.delivery_instructions.label}}</label>
+                                {{ form.delivery_instructions|attr:"placeholder:Delivery Instructions"|attr:"class:form-control"|attr:'rows:5' }}
+                                <small id="id_delivery_instructions" class="form-text text-muted">{% translate 'Tell us any other points you find nessecery about your order' %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="order-submit">
+                        <input type="submit" value="{% translate 'Submit' %}" class="btn">
+                    </div>
+        
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+{% include 'base/footer.html' %}
+
+
+{% endblock %}
+
+{% block js-files %}
+<script src="{% static 'js/easyHTTP.js' %}"></script>
+
+<script>
+    const csrfToken = '{{csrf_token}}';
+    const http = new EasyHTTP;
+</script>
+
+
+<script>
+    const province = document.getElementById('id_province');
+    const cities_url = '{% url "addresses:cities" %}';
+    const city_section = document.getElementById('id_city');
+
+
+    province.addEventListener('change', e => {
+
+        if(province.options[province.selectedIndex].value === ''){
+            inner = '<option value="">---------</option>';
+            city_section.innerHTML = inner;
+            return;
+        }
+
+        let url = cities_url.concat(`?province=${province.options[province.selectedIndex].value}`);
+
+        http.get(url, function(err, res){
+            if(!err){
+                let inner;
+                response = JSON.parse(JSON.parse(res)['cities']);
+                inner = '<option value="">---------</option>';
+
+                response.forEach(city => {
+                    inner += `<option value="${city.pk}"> ${city.fields.city} </option>`
+                })
+
+                city_section.innerHTML = inner;
+            } else {
+                console.log(err);
+            }
+        })
+    })
+
+</script>
+{% endblock %}

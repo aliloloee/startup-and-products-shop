@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block title %}{% translate 'order' %}{% endblock %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/orders/order.css' %}">
+{% endblock %}
+
+
+{% block content %}
+{% include "base/nav-main.html" %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center card-form">
+                <div class="card-body">
+                {% include 'registration/messages.html' %}
+                <h3>{% translate 'Checkout:' %}</h3>
+                <h2>{% translate 'Total : {{order.get_total_cost}}' %}</h2>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

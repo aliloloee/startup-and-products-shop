@@ -1,0 +1,8 @@
+{% extends 'admin/change_form.html' %}
+
+{% load i18n %}
+
+{% block object-tools-items %}
+    <li><a href="{% url 'admin:order_details' object_id %}">{% translate 'ordering products' %}</a></li>
+    {{ block.super }}
+{% endblock %}

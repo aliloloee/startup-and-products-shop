@@ -1,0 +1,73 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load i18n %}
+
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/store/products.css' %}">
+{% endblock %}
+
+
+{% block title %}{% translate 'Store' %}{% endblock %}
+{% block content %}
+
+{% include "base/main-navbar.html" %}
+
+{% include 'registration/messages.html' %}
+
+
+<div class="section product-container">
+    <div class="section-title">
+        <h2>{% translate 'The <span>products</span>' %}</h2>
+        <h4>{% translate 'Devices you can order' %}</h4>
+    </div>
+
+    <!-- presale -->
+    <div class="section-center presale-info">
+        <p>{% translate '<span>Note:</span> Since we are a young startup and the stock of our products are limited, so for now our policy for selling the products is online-presale.' %}
+        </p>
+        <p>
+            {% translate '<span>How to:</span> All you need to do is to go to product page, press <span class="pre-buy">PRE-BUY</span> button and fill the form. our colleagues will call you as soon as possible.' %}
+        </p>
+    </div>
+    <!-- end of presale -->
+
+    <div class="section-center">
+        {% cache cache_ttl product LANGUAGE_CODE %}
+        {% for product in products %}
+        <div class="product">
+            <div class="product-content">
+                <div class="product-img">
+                    <img src="{{ product.transparent_image.url }}" alt="Product-image">
+                </div>
+                <div class="product-btns">
+                    <a type="button" class="btn" href="{% url 'store:product_detail' product.slug %}">{% translate 'product details' %} <i class="fas fa-search"></i></a>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-info-top">
+                    <h2 class="product-name">{{ product.title }}</h2>
+                </div>
+            </div>
+            {% if product.discount_price %}
+            <div class="off-info">
+                <h2 class="sm-title">{% translate 'off' %}</h2>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endcache %}
+
+    </div>
+</div>
+
+
+
+{% include 'base/footer.html' %}
+
+
+{% endblock %}

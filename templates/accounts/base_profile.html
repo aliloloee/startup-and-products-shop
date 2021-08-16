@@ -1,0 +1,62 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block content %}
+{% include "base/main-navbar.html" %}
+
+
+<div class="section profile-container">
+    <div class="section-center row">
+        <div class="col-md-4 sidebar-container">
+            <div class="card sidebar">
+
+                <div class="card-body">
+                    {% if avatar %}
+                    <img src="{{ avatar.url }}" class="rounded-circle">
+                    {% endif %}
+                    <div class="mt-3">
+                        <ul>
+                            <li><a href="{% url 'accounts:edit_profile' %}">{% translate 'Profile' %}</a></li>
+                            <li><a href="#">{% translate 'Orders' %}</a></li>
+                            <li><a href="{% url 'accounts:change_password' %}">{% translate 'Change Password' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 profile-forms">
+            {% block profile-form %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+{% include 'base/footer.html' %}
+
+<script>
+    const sideBarLinks = document.querySelectorAll('.sidebar ul li a');
+    const currentHref = window.location.href;
+
+
+    // Taking care of active sidebar link
+    window.addEventListener('DOMContentLoaded', e => {
+        activateSidebarLink();
+
+    })
+    function activateSidebarLink() {
+        sideBarLinks.forEach(link => {
+            if (link.href === currentHref) {
+                link.classList.add('active');
+            }
+        })
+    }
+
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,224 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% block content %}
+
+<!-- CSS FILES -->
+<link rel="stylesheet" href="{% static 'css/admin/manage_order.css' %}">
+
+<style>
+    .related-lookup {
+    background-image: url("{% static 'images/admin/search.svg' %}");
+    }
+    .delete-lookup{
+        background-image: url("{% static 'images/admin/icon-no.svg' %}");
+    }
+    .add-icon {
+        background-image: url("{% static 'images/admin/icon-addlink.svg' %}");
+    }
+</style>
+<!-- END OF CSS FILES -->
+
+<div class="text-content">
+    <h1>{% translate 'Products in the order' %}</h1>
+    <button type="button" id="add-button" class="btn">
+        <i class="add-icon"></i>
+    </button>
+</div>
+
+<div class="row">
+    <div class="results">
+        <table class="result_list">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="text"><span>ID</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Product' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Price' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Quantity' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Remove Product' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Total Cost' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>{% translate 'Details' %}</span></div>
+                        <div class="clear"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <th class="field">
+                        <a href="{% url 'admin:store_product_change' product.product.id %}">{{product.product.id}}</a>
+                    </th>
+                    <td class="field">{{product.product.title}}</td>
+                    <td class="field">{{product.price}}</td>
+                    <td class="field">
+                        <input type="number" name="quantity" data-index="{{product.id}}" value="{{product.quantity}}" step="1" min="0">
+                    </td>
+                    <td class="field">
+                        <button type="button" name="delete-button" data-index="{{product.id}}" class="btn">
+                        <i class="delete-lookup"></i>
+                        </button>
+                    </td>
+                    <td class="field" id="item-cost-{{product.id}}">{{product.get_cost}}</td>
+                    <td class="field">
+                        <form method="GET">
+                            <input type="hidden" name="product-id" value="{{product.id}}">
+                            <button type="submit" class="btn"><i class="related-lookup"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="results products-to-add">
+        <table class="result_list">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="text"><span>ID</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>Product</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>Price</span></div>
+                        <div class="clear"></div>
+                    </th>
+                    <th scope="col">
+                        <div class="text"><span>Add to order</span></div>
+                        <div class="clear"></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for product in products %}
+                <tr>
+                    <th class="field">
+                        <a href="{% url 'admin:store_product_change' product.product.id %}">{{product.product.id}}</a>
+                    </th>
+                    <td class="field">{{product.product.title}}</td>
+                    <td class="field">{{product.price}}</td>
+                    <td class="field">
+                        <button type="button" name="delete-button" data-index="{{product.id}}" class="btn">
+                        <i class="delete-lookup"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div> -->
+
+{% if has_details %}
+<div class="row row-grid">
+    <div class="product-details">
+        <div>
+            {% if details.features %}
+            {% with features=details.features %}
+                <div>
+                    <ul>
+                    {% for feature in features %}
+                        <li>{{feature.feature.name}} (£{{feature.price}})</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endwith %}
+            {% else %}
+            <h2>{% translate 'No feature' %}</h2>
+            {% endif %}
+        </div>
+        <div>
+            {% if details.options %}
+            {% with options=details.options %}
+                    <div>
+                        <ol>
+                        {% for option in options %}
+                            <li>
+                                <span>{{option.option.title}}</span> : {{option.option.name}} (£{{option.price}})
+                            </li>
+                        {% endfor %}
+                        </ol>
+                    </div>
+            {% endwith %}
+            {% else %}
+            <h2>{% translate 'No option' %}</h2>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="update-details">
+        <div class="update-grid">
+            <div>
+                {% with features=updates.features %}
+                {% for feature in features %}
+                <input type="checkbox" data-index="{{feature.id}}" name="feature">
+                <label for="feature">{{feature.name}} (£{{feature.price}})</label><br>
+                {% empty %}
+                <p>{% translate 'no feature' %}</p>
+                {% endfor %}
+                {% endwith %}
+            </div>
+            <div>
+                {% with options_details=updates.options_details %}
+                {% for title, options in options_details %}
+                <label for="options">{{ title|capfirst }}:</label>
+                <select name="options" id="option-{{ forloop.counter }}">
+                    <option value="None">--------</option>
+                    {% for option in options %}
+                    <option value="{{option.id}}">{{option.name|capfirst }} (£{{option.price}})</option>
+                    {% endfor %}
+                </select>
+                {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endif %}
+
+
+<script src="{% static 'js/easyHTTP.js' %}"></script>
+
+<script>
+    const http = new EasyHTTP;
+    const csrfToken  = "{{csrf_token}}";
+    const change_url = "{% url 'admin:change_item' %}";
+</script>
+
+<script src="{% static 'js/admin/order/manage_order.js' %}"></script>
+
+{% endblock %}
+
+
+
+
+

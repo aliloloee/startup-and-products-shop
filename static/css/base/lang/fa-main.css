@@ -1,0 +1,20 @@
+* {
+    letter-spacing: 0 !important;
+}
+
+body {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+#nav, #footer {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+@media screen and (max-width:768px) {
+    #nav .nav-links li {
+        direction: rtl !important;
+        text-align: right;
+    }
+}

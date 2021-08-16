@@ -1,0 +1,58 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+<!-- CSS FILES LINKS -->
+<link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+
+{% if LANGUAGE_CODE == 'en' %}
+    <link rel="stylesheet" href="{% static 'css/footer/lang/en-footer.css' %}">
+{% endif %}
+
+{% if LANGUAGE_CODE == 'fa' %}
+    <link rel="stylesheet" href="{% static 'css/footer/lang/fa-footer.css' %}">
+{% endif %}
+
+{% if LANGUAGE_CODE == 'ar' %}
+    <link rel="stylesheet" href="{% static 'css/footer/lang/ar-footer.css' %}">
+{% endif %}
+<!-- END OF CSS FILE LINKS -->
+
+
+
+
+<section class="section footer" id="footer">
+    <div class="section-center footer-center">
+        <div class="footer-col">
+            <img src="{% static 'images/introduction/logo.png' %}" alt="The Company Logo" class="footer-logo">
+            <p>{% translate 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum porro, quia voluptatem pariatur nihil molestiae pe' %}</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% translate 'features' %}</h4>
+            <p>{% translate 'deals & offers' %}</p>
+            <p>{% translate 'customer reviews' %}</p>
+            <p>{% translate 'cancelations policy' %}</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% translate 'quick contact' %}</h4>
+            <p><span><i class="fas fa-phone"></i></span>+091458721459</p>
+            <p><span><i class="fas fa-envelope"></i></span>contact@website.com</p>
+            <p><span><i class="fas fa-home"></i></span>{% translate 'XYZ road, XYZ complex' %}</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>{% translate 'follow us on' %}</h4>
+            <p><a href="#"><i class="fab fa-instagram"></i></a>{% translate 'instagram' %}</p>
+            <p><a href="#"><i class="fab fa-youtube"></i></a>{% translate 'youtube' %}</p>
+            <p><a href="#"><i class="fab fa-twitter"></i></a>{% translate 'twitter' %}</p>
+        </div>
+
+    </div>
+    <div class="footer-divider"></div>
+    <div class="copyright">
+        <p>{% translate 'copyright &copy; company | all rights reserved' %}</p>
+    </div>
+</section>

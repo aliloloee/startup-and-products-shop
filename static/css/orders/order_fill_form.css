@@ -1,0 +1,80 @@
+.form-control {
+    background: #bfbba60b;
+}
+
+/*
+=============== 
+submit button
+===============
+*/
+.order-submit {
+    display: flex;
+    justify-content: center;
+}
+
+.order-submit input {
+    letter-spacing: 1px;
+    background: rgba(15, 184, 15, 0.796);
+}
+
+.order-submit input:hover {
+    color: var(--clr-white);
+    background: green;
+}
+
+
+
+@media screen and (min-width:768px) {
+    .order-submit {
+        justify-content: flex-end;
+    }
+}
+
+
+/*
+=============== 
+alerts
+===============
+*/
+
+/* .profile-container {
+    position: relative;
+} */
+
+.alert {
+    z-index: 1000;
+    position: fixed;
+    top: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 15px;
+    padding: 20px 40px;
+    border-radius: 4px;
+    animation: slideFromLeft 2s ease-in-out 1;
+    transition: var(--transition);
+}
+
+/* same width as form-card */
+.alert {
+    width: 300px;
+}
+
+.alert-success {
+    background: #D4EDDA;
+    border-left: 8px solid #3AD66E;
+}
+
+.alert-error {
+    background: #FFF3CD;
+    border-left: 8px solid #FFA502;
+}
+
+@media screen and (min-width:768px) {
+    .alert {
+        font-size: 20px;
+    }
+
+    .alert {
+        width: 400px;
+    }
+}

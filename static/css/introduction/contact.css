@@ -1,0 +1,142 @@
+.contact-section {
+    background: linear-gradient(#6a719525, #6a71958e),url('/static/images/introduction/contact.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.contact-center{
+    width: 90%;
+    max-width: 1170px;
+}
+
+.contact-center h4 {
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-size: 0.7rem;
+}
+
+.contact-info {
+    color: var(--clr-white);
+    line-height: 65px;
+    font-size: 14px;
+}
+
+.contact-info i {
+    margin-right: 20px;
+    font-size: 13px;
+    color: var(--clr-white);
+}
+
+.contact-form h2 {
+    display: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--clr-white);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 30px;
+}
+
+.contact-form .text-box {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--dark-shadow);
+    /* margin-bottom: 20px; */
+    opacity: 0.9;
+}
+
+.contact-form textarea {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 100%;
+    min-height: 150px;
+    max-height: 400px;
+    padding: 10px;
+    resize: vertical;
+    border-radius: 5px;
+    box-shadow: var(--dark-shadow);
+    /* margin-bottom: 20px; */
+    opacity: 0.9;
+}
+
+.contact-form .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--clr-primary-1);
+}
+
+.contact-form .btn:hover {
+    background: var(--clr-primary-8);
+}
+
+
+@media screen and (min-width:768px){
+
+    .contact-form h2 {
+        display: block;
+    }
+    
+    .contact-info i {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:992px){
+    .contact-center h4 {
+        font-size: 0.85rem;
+    }
+}
+
+
+
+/* alert */
+
+@keyframes slideFromLeft {
+    0%{
+        right: -50%;
+        opacity: 0;
+    }
+    50%{
+        right: 50%;
+        opacity: 1;
+    }
+    100%{
+        transform: translateX(50%);
+    }
+}
+
+.alert {
+    z-index: 1;
+    position: fixed;
+    top: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 18px;
+    padding: 20px 40px;
+    border-radius: 4px;
+    animation: slideFromLeft 2s ease-in-out 1;
+    transition: var(--transition);
+}
+
+.alert-success {
+    background: #D4EDDA;
+    border-left: 8px solid #3AD66E;
+}
+
+.alert-error {
+    background: #FFF3CD;
+    border-left: 8px solid #FFA502;
+}
+
+.fade {
+    opacity: 0;
+}

@@ -1,0 +1,26 @@
+version: '3'
+
+services: 
+  nginx:
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "80:80"
+    volumes: 
+      - startup_static_volume:/startup/staticfiles
+      - startup_dynamic_volume:/startup/media
+    networks: 
+      - nginx_network
+    
+
+volumes: 
+  startup_static_volume :
+    external: true
+  startup_dynamic_volume :
+    external: true
+
+networks: 
+  nginx_network :
+    external: true

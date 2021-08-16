@@ -1,0 +1,137 @@
+{% extends "accounts/base_profile.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/accounts/base_profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/accounts/edit_profile.css' %}">
+{% endblock %}
+
+
+{% block title %}{% translate 'Edit your account' %}{% endblock %}
+
+
+{% block profile-form %}
+<p class="h4 mb-4 font-weight-bold">{% translate 'Profile' %}</p>
+<hr>
+<div class="row">
+
+    <div class="col-md-8">
+        <form method="POST" enctype="multipart/form-data">
+
+            {% if user_form.errors %}
+            <div class="alert alert-error" role="alert">
+                {% translate 'Error: Please try again!' %}
+            </div>
+            {% endif %}
+
+            {% if profile_form.errors %}
+                {% for field in profile_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-error" role="alert">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_fullname">{% translate 'Name' %}</label>
+                {{ user_form.fullname|attr:'aria-describedby:nameHelp'|attr:'class:form-control light-bg' }}
+                <small id="nameHelp" class="form-text text-muted">{% translate 'Tell us your name so we get to khow you better.' %}</small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_email">{% translate 'Email address' %}</label>
+                {{ user_form.email|attr:'aria-describedby:emailHelp'|attr:'class:form-control light-bg' }}
+                <small id="emailHelp" class="form-text text-muted">{% translate 'We will share the latest news of our company with you.' %}</small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_bio">{% translate 'Bio' %}</label>
+                {{ profile_data_form.bio|attr:'class:form-control light-bg' }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_company">{% translate 'Company' %}</label>
+                {{ profile_data_form.company|attr:'aria-describedby:companyHelp'|attr:'class:form-control light-bg' }}
+                <small id="companyHelp" class="form-text text-muted">{% translate 'We would like to khow much more about you, if you are a company.' %}</small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_website">{% translate 'Website' %}</label>
+                {{ profile_data_form.website|attr:'class:form-control light-bg' }}
+            </div>
+
+            <button class="btn" type="submit"
+                value="Save changes" name='data-submit'>{% translate 'Update Changes' %}</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form method="POST" enctype="multipart/form-data" id="avatar-form">
+            <label class="font-weight-bold">{{ profile_avatar_form.avatar.label}}</label>
+
+            {% if profile_avatar_form.errors %}
+                {% for field in profile_avatar_form %}
+                    {% if field.errors %}
+                        <div class="alert alert-error" role="alert">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+            {% csrf_token %}
+            {% if avatar %}
+            <div class="my-2 dropdown">
+                <img src="{{ avatar.url }}">
+                <button class="btn dropbtn" type="button"><i class="fas fa-pencil-alt"></i>{% translate 'edit' %}</button>
+                <div class="avatar-content">
+                    <label for="id_avatar">
+                        <div>{% translate 'Update photo' %}</div>
+                        {{ profile_avatar_form.avatar}}
+                    </label>
+                    <input type="submit" name="delete-submit" value="Remove photo">
+                    <input type="submit" name="image-submit" value="update-photo" id="avatar-submit">
+                </div>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js-files %}
+<script>
+    const avatarDropdownBtn = document.getElementById('avatar-form').querySelector('.dropbtn');
+    const avatarContent = document.getElementById('avatar-form').querySelector('.avatar-content');
+    const avatarChange = document.getElementById('id_avatar');
+
+    // Taking care of file input on change submit
+    avatarChange.addEventListener('change', e => {
+        document.getElementById('avatar-submit').click();
+    })
+    
+    // Taking care of avatar dropdown
+    avatarDropdownBtn.addEventListener('click', e => {
+        e.preventDefault();
+        avatarContent.style.display = 'block';
+    })
+    window.addEventListener('click', e => {
+        if (e.target.classList.contains('dropbtn') | e.target.parentElement.classList.contains('dropbtn')) {
+            return;
+        }
+        if (avatarContent.style.display === 'block') {
+            avatarContent.style.display = 'none';
+        } else {
+            return;
+        }
+    })
+</script>
+{% endblock %}

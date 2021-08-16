@@ -1,0 +1,1084 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-08 20:29+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: BANPars/settings.py:152
+msgid "English"
+msgstr "انگلیسی"
+
+#: BANPars/settings.py:153
+msgid "Persian"
+msgstr "فارسی"
+
+#: BANPars/settings.py:154
+msgid "Arabic"
+msgstr "عربی"
+
+#: BANPars/urls.py:11
+msgid "Admin Panel"
+msgstr "پنل ادمین"
+
+#: BANPars/urls.py:12
+msgid "Basamad Azma Admin Panel"
+msgstr "پنل ادمین سایت بسامد آزما"
+
+#: BANPars/urls.py:13
+msgid "Basamad Azma"
+msgstr "بسامد آزما"
+
+#: accounts/apps.py:8
+msgid "Accounts"
+msgstr "حساب ها"
+
+#: accounts/forms.py:22 accounts/forms.py:65 accounts/forms.py:95
+#: introduction/models.py:90 orders/models.py:21
+msgid "Phone Number"
+msgstr "شماره همراه"
+
+#: accounts/forms.py:22 accounts/forms.py:65 accounts/forms.py:69
+#: accounts/forms.py:101 checkout/models.py:31 checkout/models.py:42
+msgid "Required"
+msgstr "ضروری"
+
+#: accounts/forms.py:23 accounts/forms.py:66
+#, fuzzy
+#| msgid "Phone number is not valid"
+msgid "Phonenumber can not be blank"
+msgstr "شماره همراه صحیح نیست"
+
+#: accounts/forms.py:24
+msgid "Invalid phonenumber"
+msgstr ""
+
+#: accounts/forms.py:58 accounts/forms.py:100 accounts/forms.py:118
+#: customUser/models.py:45
+msgid "Username"
+msgstr "نام کاربری"
+
+#: accounts/forms.py:60 accounts/forms.py:103 accounts/forms.py:120
+#, fuzzy
+#| msgid "Change password"
+msgid "Password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:62 accounts/forms.py:124
+#: templates/accounts/change_password.html:49
+#, fuzzy
+#| msgid "Change password"
+msgid "Repeat Password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:67
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Invalid Phonenumber"
+msgstr "شماره همراه"
+
+#: accounts/forms.py:69 accounts/forms.py:97
+msgid "Verification Code"
+msgstr ""
+
+#: accounts/forms.py:70
+msgid "OTP can not be blank"
+msgstr ""
+
+#: accounts/forms.py:71
+msgid "Invalid OTP"
+msgstr ""
+
+#: accounts/forms.py:76
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Wrong Phonenumber"
+msgstr "شماره همراه"
+
+#: accounts/forms.py:85
+msgid "Verification code is expired, press resend"
+msgstr ""
+
+#: accounts/forms.py:88
+msgid "Wrong code, try again"
+msgstr ""
+
+#: accounts/forms.py:102
+msgid "Username must contain at least 5 characters"
+msgstr ""
+
+#: accounts/forms.py:112
+msgid "Wrong crendtials"
+msgstr ""
+
+#: accounts/forms.py:123 accounts/forms.py:139
+#: templates/accounts/change_password.html:42
+#: templates/registration/change_forgotten_password.html:24
+#, fuzzy
+#| msgid "Change password"
+msgid "New Password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:140
+msgid "Repeat New Password"
+msgstr ""
+
+#: accounts/forms.py:143 accounts/forms.py:154 customUser/models.py:47
+#: introduction/models.py:66 introduction/models.py:89 orders/models.py:13
+#: preorder/models.py:11
+msgid "Fullname"
+msgstr "نام کامل"
+
+#: accounts/forms.py:145
+#, fuzzy
+#| msgid "Email address"
+msgid "Email Address"
+msgstr "ایمیل"
+
+#: accounts/forms.py:156
+msgid "Email"
+msgstr ""
+
+#: accounts/forms.py:170
+msgid "Tell us a bit about yourself"
+msgstr ""
+
+#: accounts/forms.py:171 accounts/models.py:18
+#: templates/accounts/edit_profile.html:60
+msgid "Company"
+msgstr "شرکت"
+
+#: accounts/forms.py:172 accounts/models.py:20
+msgid "Company website"
+msgstr "سایت شرکت"
+
+#: accounts/forms.py:175 accounts/models.py:14
+msgid "Profile Picture"
+msgstr "عکس پروفایل"
+
+#: accounts/forms.py:175
+msgid "Image files only"
+msgstr ""
+
+#: accounts/forms.py:184
+msgid "No image!"
+msgstr ""
+
+#: accounts/forms.py:188
+msgid "Width and height of the image is more than {}"
+msgstr ""
+
+#: accounts/forms.py:191
+msgid "Profile image can not be over {} mb"
+msgstr ""
+
+#: accounts/forms.py:200 templates/accounts/change_password.html:37
+msgid "Old Password"
+msgstr ""
+
+#: accounts/forms.py:207
+#, fuzzy
+#| msgid "Change password"
+msgid "Invalid password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:212
+#, fuzzy
+#| msgid "Change password"
+msgid "old password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:213
+#, fuzzy
+#| msgid "Change password"
+msgid "password"
+msgstr "تغییر پسوورد"
+
+#: accounts/forms.py:214
+#, fuzzy
+#| msgid "Change password"
+msgid "new password"
+msgstr "تغییر پسوورد"
+
+#: accounts/models.py:10 preorder/models.py:9
+msgid "User"
+msgstr "کاربر"
+
+#: accounts/models.py:16
+msgid "Biography"
+msgstr "بیوگرافی"
+
+#: accounts/models.py:23 templates/accounts/base_profile.html:22
+#: templates/accounts/edit_profile.html:17
+msgid "Profile"
+msgstr "پروفایل"
+
+#: accounts/models.py:24
+msgid "Profiles"
+msgstr "پروفایل ها"
+
+#: accounts/models.py:30
+#, fuzzy
+#| msgid "Profile"
+msgid "Profile of {}"
+msgstr "پروفایل"
+
+#: accounts/views.py:131
+msgid "Wrong credentials"
+msgstr ""
+
+#: accounts/views.py:178
+msgid "Something went wrong, Please try again"
+msgstr ""
+
+#: accounts/views.py:188
+msgid "Verify your number first"
+msgstr ""
+
+#: accounts/views.py:200
+msgid "Reset password time expired"
+msgstr ""
+
+#: accounts/views.py:213
+msgid "Password successfully changed"
+msgstr ""
+
+#: accounts/views.py:240
+msgid "Your personal info was successfully updated"
+msgstr ""
+
+#: accounts/views.py:248
+msgid "Your image profile was successfully updated"
+msgstr ""
+
+#: accounts/views.py:257
+msgid "Your image profile was successfully removed"
+msgstr ""
+
+#: accounts/views.py:259
+msgid "Something went wrong in removing your profile image"
+msgstr ""
+
+#: accounts/views.py:280
+msgid "Password was successfully changed"
+msgstr ""
+
+#: addresses/models.py:9 addresses/models.py:15 addresses/models.py:22
+#: orders/models.py:18
+msgid "Province"
+msgstr "استان"
+
+#: addresses/models.py:11 addresses/models.py:25
+msgid "Created at"
+msgstr "ساخته شده در"
+
+#: addresses/models.py:12 addresses/models.py:26
+msgid "Updated at"
+msgstr "به روز رسانی شده در"
+
+#: addresses/models.py:16
+msgid "Provinces"
+msgstr "استان ها"
+
+#: addresses/models.py:23 addresses/models.py:29 orders/models.py:19
+msgid "City"
+msgstr "شهر"
+
+#: addresses/models.py:30
+msgid "Cities"
+msgstr "شهرها"
+
+#: basket/apps.py:8
+msgid "Basket"
+msgstr "سبد خرید"
+
+#: checkout/models.py:8
+msgid "In Store"
+msgstr "درون فروشگاهی"
+
+#: checkout/models.py:9
+msgid "Home Delivery"
+msgstr "ارسال درب منزل"
+
+#: checkout/models.py:10
+msgid "Digital Delivery"
+msgstr "ارسال پستی"
+
+#: checkout/models.py:14
+msgid "Delivery_name"
+msgstr "نام روش ارسال"
+
+#: checkout/models.py:18
+msgid "Delivery price"
+msgstr "قیمت روش ارسال"
+
+#: checkout/models.py:19
+msgid "Maximum 999,999.00"
+msgstr "ماکزیمم 999,999.0 تومان"
+
+#: checkout/models.py:22
+msgid "The price must be between 0 and 999,999.00"
+msgstr "قیمت باید بین 0 و 999,999.0 تومان باشد"
+
+#: checkout/models.py:30
+msgid "Delivery method"
+msgstr "روش ارسال"
+
+#: checkout/models.py:35
+msgid "Delivery timeframe"
+msgstr "مدت زمان تقریبی ارسال سفارش"
+
+#: checkout/models.py:39
+msgid "Delivery window"
+msgstr "بازه زمانی دریافت و بسته بندی سفارش در طول روز"
+
+#: checkout/models.py:42
+msgid "list order"
+msgstr "میزان اهمیت روش ارسال(به عدد)"
+
+#: checkout/models.py:46
+msgid "Delivery Option"
+msgstr "آپشن های ارسال سفارشات"
+
+#: checkout/models.py:47
+msgid "Delivery Options"
+msgstr "آپشن های ارسال سفارشات"
+
+#: checkout/models.py:55
+msgid "name"
+msgstr "اسم"
+
+#: checkout/models.py:62
+msgid "Payment Selection"
+msgstr ""
+
+#: checkout/models.py:63
+msgid "Payment Selections"
+msgstr "روش پرداخت"
+
+#: customUser/apps.py:8
+msgid "Users"
+msgstr "کاربران"
+
+#: customUser/models.py:12
+#, python-format
+msgid "%(value) is not a valid phone-number"
+msgstr ""
+
+#: customUser/models.py:19
+msgid "Users must have an username"
+msgstr ""
+
+#: customUser/models.py:46 templates/accounts/edit_profile.html:49
+msgid "Email address"
+msgstr "ایمیل"
+
+#: customUser/models.py:49
+msgid "Signup date"
+msgstr "تاریخ ایجاد حساب"
+
+#: customUser/models.py:51
+msgid "Account is active"
+msgstr "حساب فعال است"
+
+#: customUser/models.py:52
+msgid "Account is deleted"
+msgstr "حساب پاک شده است"
+
+#: customUser/models.py:53
+msgid "Account is admin"
+msgstr "حساب متعلق به ادمین است"
+
+#: customUser/models.py:54
+msgid "Account is staff"
+msgstr "حساب متعلق به اعضاء است"
+
+#: customUser/models.py:55
+msgid "Account is superuser"
+msgstr "حساب متعلق به کاربر ممتاز است"
+
+#: introduction/apps.py:9 introduction/models.py:65
+msgid "Introduction"
+msgstr "معرفی"
+
+#: introduction/forms.py:15
+msgid "Your Name"
+msgstr "اسم شما"
+
+#: introduction/forms.py:16
+msgid "Your Number"
+msgstr "شماره شما"
+
+#: introduction/forms.py:17
+msgid "Your Message"
+msgstr "پیام شما"
+
+#: introduction/models.py:13
+msgid "Service title"
+msgstr "عنوان سرویس"
+
+#: introduction/models.py:14
+msgid "Service description"
+msgstr "توضیحات سرویس"
+
+#: introduction/models.py:15
+msgid "Clip URL"
+msgstr "آدرس ویدئو مربوطه"
+
+#: introduction/models.py:24
+msgid "Service"
+msgstr "سرویس"
+
+#: introduction/models.py:25 templates/introduction/company.html:58
+#: templates/introduction/company.html:114
+msgid "Services"
+msgstr "خدمات"
+
+#: introduction/models.py:40
+msgid "Benefit title"
+msgstr "عنوان مزیت"
+
+#: introduction/models.py:42
+msgid "Benefit description"
+msgstr "توضیحات مزیت"
+
+#: introduction/models.py:49
+msgid "Benefit"
+msgstr "مزیت"
+
+#: introduction/models.py:50 templates/introduction/company.html:62
+msgid "Benefits"
+msgstr "مزیت"
+
+#: introduction/models.py:67
+msgid "Role in team"
+msgstr "نقش در تیم"
+
+#: introduction/models.py:74
+msgid "Team member"
+msgstr "عضو گروه"
+
+#: introduction/models.py:75
+msgid "Team members"
+msgstr "اعضاء گروه"
+
+#: introduction/models.py:91
+msgid "Message"
+msgstr "پیام"
+
+#: introduction/models.py:97
+msgid "Contact message"
+msgstr "پیام ارتباطی"
+
+#: introduction/models.py:98
+msgid "Contact messages"
+msgstr "پیام های ارتباطی"
+
+#: introduction/models.py:104
+msgid "Phone number is not valid"
+msgstr "شماره همراه صحیح نیست"
+
+#: introduction/models_utils.py:37
+msgid "Filetype not supported."
+msgstr "فرمت فایل پشتیبانی نمی شود"
+
+#: lang_ctrl/apps.py:8
+msgid "Language Control"
+msgstr "کنترل زبان"
+
+#: orders/forms.py:30
+msgid "Address can not be blank, Please fill it."
+msgstr ""
+
+#: orders/models.py:12
+msgid "Order Placed By"
+msgstr ""
+
+#: orders/models.py:14
+msgid "Address"
+msgstr ""
+
+#: orders/models.py:16
+msgid "Delivery instructions"
+msgstr ""
+
+#: orders/models.py:22
+msgid "Post Code"
+msgstr ""
+
+#: orders/models.py:23
+msgid "Is Paid"
+msgstr ""
+
+#: orders/models.py:29
+msgid "Order"
+msgstr ""
+
+#: orders/models.py:30 templates/accounts/base_profile.html:23
+msgid "Orders"
+msgstr ""
+
+#: orders/models.py:40
+msgid "Related Order"
+msgstr ""
+
+#: orders/models.py:41
+msgid "Ordering Product"
+msgstr ""
+
+#: orders/models.py:42
+msgid "Ordering Product Price"
+msgstr ""
+
+#: orders/models.py:43
+msgid "Ordering Product Quantity"
+msgstr ""
+
+#: orders/models.py:46
+msgid "Order Item"
+msgstr ""
+
+#: orders/models.py:47
+msgid "Order Items"
+msgstr ""
+
+#: orders/models.py:60 orders/models.py:82
+msgid "Product In Placed Order"
+msgstr ""
+
+#: orders/models.py:65
+msgid "Related Feature"
+msgstr ""
+
+#: orders/models.py:69
+msgid "Related Feature Price"
+msgstr ""
+
+#: orders/models.py:72 orders/models.py:73
+msgid "Features Related To Ordering Products"
+msgstr ""
+
+#: orders/models.py:87
+msgid "Related Option"
+msgstr ""
+
+#: orders/models.py:91
+msgid "Related Option Price"
+msgstr ""
+
+#: orders/models.py:94 orders/models.py:95
+msgid "Options Related To Ordering Products"
+msgstr ""
+
+#: preorder/forms.py:18
+msgid "wrong phone number."
+msgstr ""
+
+#: preorder/models.py:10 store/models.py:71 store/models.py:89
+#: store/models.py:114 store/models.py:142
+msgid "Product"
+msgstr ""
+
+#: preorder/models.py:13
+msgid "Phone number"
+msgstr ""
+
+#: preorder/models.py:19
+msgid "Pre-Order"
+msgstr ""
+
+#: preorder/models.py:20
+msgid "Pre-Orders"
+msgstr ""
+
+#: store/apps.py:7
+msgid "Store"
+msgstr ""
+
+#: store/models.py:12 store/models.py:16 store/models.py:36
+msgid "Category"
+msgstr ""
+
+#: store/models.py:13 store/models.py:64
+msgid "Slug"
+msgstr ""
+
+#: store/models.py:17
+msgid "Categories"
+msgstr ""
+
+#: store/models.py:37 store/models.py:159
+msgid "Title"
+msgstr ""
+
+#: store/models.py:38
+msgid "Description"
+msgstr ""
+
+#: store/models.py:39
+msgid "Transparent Image"
+msgstr ""
+
+#: store/models.py:40
+msgid "Upload a Transparent image."
+msgstr ""
+
+#: store/models.py:44 store/models.py:116 store/models.py:161
+msgid "Price"
+msgstr ""
+
+#: store/models.py:45 store/models.py:54
+msgid "Maximum 99 milion toman"
+msgstr ""
+
+#: store/models.py:48
+msgid "The price must be between 0 and 99.999.999 toman"
+msgstr ""
+
+#: store/models.py:53
+msgid "Discount price"
+msgstr ""
+
+#: store/models.py:57
+msgid "The price must be between 0 and 999.99."
+msgstr ""
+
+#: store/models.py:62 store/models.py:125 store/models.py:169
+msgid "is active"
+msgstr ""
+
+#: store/models.py:72
+msgid "Products"
+msgstr ""
+
+#: store/models.py:90
+msgid "Image"
+msgstr ""
+
+#: store/models.py:90
+msgid "Upload a product image"
+msgstr ""
+
+#: store/models.py:93
+msgid "Alternative text"
+msgstr ""
+
+#: store/models.py:93
+msgid "Please add alternative text"
+msgstr ""
+
+#: store/models.py:100
+msgid "Product Image"
+msgstr ""
+
+#: store/models.py:101
+msgid "Product Images"
+msgstr ""
+
+#: store/models.py:115 store/models.py:160
+#: templates/accounts/edit_profile.html:43
+msgid "Name"
+msgstr ""
+
+#: store/models.py:117 store/models.py:162
+msgid "Maximum 9 milion toman"
+msgstr ""
+
+#: store/models.py:120 store/models.py:165
+msgid "The price must be between 0 and 9.999.999 toman"
+msgstr ""
+
+#: store/models.py:133
+msgid "Feature"
+msgstr ""
+
+#: store/models.py:134
+msgid "Features"
+msgstr ""
+
+#: store/models.py:143
+msgid "Title Name"
+msgstr ""
+
+#: store/models.py:146
+msgid "Option title"
+msgstr ""
+
+#: store/models.py:147
+msgid "Option titles"
+msgstr ""
+
+#: store/models.py:177
+msgid "Option"
+msgstr ""
+
+#: store/models.py:178
+msgid "Options"
+msgstr ""
+
+#: templates/accounts/base_profile.html:24
+#: templates/accounts/change_password.html:17
+#: templates/registration/change_forgotten_password.html:7
+#: templates/registration/change_forgotten_password.html:44
+#, fuzzy
+#| msgid "Change password"
+msgid "Change Password"
+msgstr "تغییر پسوورد"
+
+#: templates/accounts/change_password.html:13
+#: templates/accounts/edit_profile.html:13
+msgid "Edit your account"
+msgstr ""
+
+#: templates/accounts/change_password.html:44
+msgid "Password must be at least 5 characters long."
+msgstr ""
+
+#: templates/accounts/change_password.html:45
+msgid "Password must contain numbers and alphebet."
+msgstr ""
+
+#: templates/accounts/change_password.html:54
+#, fuzzy
+#| msgid "Change password"
+msgid "Update Password"
+msgstr "تغییر پسوورد"
+
+#: templates/accounts/edit_profile.html:26
+msgid "Error: Please try again!"
+msgstr ""
+
+#: templates/accounts/edit_profile.html:45
+msgid "Tell us your name so we get to khow you better."
+msgstr ""
+
+#: templates/accounts/edit_profile.html:51
+msgid "We will share the latest news of our company with you."
+msgstr ""
+
+#: templates/accounts/edit_profile.html:55
+msgid "Bio"
+msgstr ""
+
+#: templates/accounts/edit_profile.html:62
+msgid "We would like to khow much more about you, if you are a company."
+msgstr ""
+
+#: templates/accounts/edit_profile.html:66
+#, fuzzy
+#| msgid "View site"
+msgid "Website"
+msgstr "مشاهده ی سایت"
+
+#: templates/accounts/edit_profile.html:71
+#, fuzzy
+#| msgid "Updated at"
+msgid "Update Changes"
+msgstr "به روز رسانی شده در"
+
+#: templates/accounts/edit_profile.html:94
+msgid "edit"
+msgstr ""
+
+#: templates/accounts/edit_profile.html:97
+#, fuzzy
+#| msgid "Updated at"
+msgid "Update photo"
+msgstr "به روز رسانی شده در"
+
+#: templates/admin/base_site.html:36
+msgid "View site"
+msgstr "مشاهده ی سایت"
+
+#: templates/admin/base_site.html:39 templates/introduction/company.html:29
+msgid "EN"
+msgstr "انگلیسی"
+
+#: templates/admin/base_site.html:42 templates/introduction/company.html:30
+msgid "FA"
+msgstr "فارسی"
+
+#: templates/admin/base_site.html:45 templates/introduction/company.html:31
+msgid "AR"
+msgstr "عربی"
+
+#: templates/admin/base_site.html:50
+msgid "Documentation"
+msgstr "مستندات"
+
+#: templates/admin/base_site.html:54
+msgid "Change password"
+msgstr "تغییر پسوورد"
+
+#: templates/admin/base_site.html:56
+msgid "Log out"
+msgstr "خروج"
+
+#: templates/base/footer.html:29
+msgid ""
+"Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum porro, quia "
+"voluptatem pariatur nihil molestiae pe"
+msgstr ""
+
+#: templates/base/footer.html:33
+msgid "features"
+msgstr ""
+
+#: templates/base/footer.html:34
+msgid "deals & offers"
+msgstr ""
+
+#: templates/base/footer.html:35
+msgid "customer reviews"
+msgstr ""
+
+#: templates/base/footer.html:36
+msgid "cancelations policy"
+msgstr ""
+
+#: templates/base/footer.html:40
+msgid "quick contact"
+msgstr ""
+
+#: templates/base/footer.html:43
+msgid "XYZ road, XYZ complex"
+msgstr ""
+
+#: templates/base/footer.html:47
+msgid "follow us on"
+msgstr ""
+
+#: templates/base/footer.html:48
+msgid "instagram"
+msgstr ""
+
+#: templates/base/footer.html:49
+msgid "youtube"
+msgstr ""
+
+#: templates/base/footer.html:50
+msgid "twitter"
+msgstr ""
+
+#: templates/base/footer.html:56
+msgid "copyright &copy; basamad azma | all rights reserved"
+msgstr ""
+
+#: templates/base/main-navbar.html:32
+msgid "home"
+msgstr "خانه"
+
+#: templates/base/main-navbar.html:35
+msgid "shop"
+msgstr ""
+
+#: templates/base/main-navbar.html:36
+msgid "products"
+msgstr "محصولات"
+
+#: templates/base/main-navbar.html:39
+msgid "solutions"
+msgstr "راه حل ها"
+
+#: templates/base/main-navbar.html:42
+msgid "about"
+msgstr "درباره ما"
+
+#: templates/base/main-navbar.html:45
+msgid "contact"
+msgstr "ارتباط با ما"
+
+#: templates/base/main-navbar.html:52
+msgid "profile"
+msgstr "پروفایل"
+
+#: templates/base/main-navbar.html:71
+msgid "cart"
+msgstr "سبد خرید"
+
+#: templates/base/main-navbar.html:73
+msgid "logout"
+msgstr ""
+
+#: templates/base/main-navbar.html:78
+msgid "login"
+msgstr "ورود"
+
+#: templates/introduction/company.html:16
+msgid "Home"
+msgstr "خانه"
+
+#: templates/introduction/company.html:36
+msgid "Welocme To"
+msgstr "خوش آمدید به"
+
+#: templates/introduction/company.html:37
+msgid "company"
+msgstr "کومپانی"
+
+#: templates/introduction/company.html:39
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto atque "
+"molestias soluta non veniam quas."
+msgstr ""
+
+#: templates/introduction/company.html:41
+msgid "Find us on"
+msgstr "ما را دنبال کنید"
+
+#: templates/introduction/company.html:66
+#: templates/introduction/company.html:158
+msgid "Team"
+msgstr "تیم"
+
+#: templates/introduction/company.html:115
+msgid "what we provide"
+msgstr ""
+
+#: templates/introduction/company.html:135
+msgid "read more"
+msgstr "بیشتر بدانید"
+
+#: templates/introduction/company.html:136
+msgid "buy now"
+msgstr "محصولات مرتبط"
+
+#: templates/introduction/company.html:159
+msgid "who we are"
+msgstr ""
+
+#: templates/introduction/contact.html:25
+msgid "Address, City, Country"
+msgstr ""
+
+#: templates/introduction/contact.html:26
+msgid "contact@contact.com"
+msgstr ""
+
+#: templates/introduction/contact.html:28
+msgid "Mon - Fri 8:00 AM to 5:00 PM"
+msgstr ""
+
+#: templates/introduction/contact.html:31
+msgid "Contact US"
+msgstr ""
+
+#: templates/introduction/contact.html:103
+msgid "Thanks for your message, we will reply as soon as possible"
+msgstr ""
+
+#: templates/introduction/contact.html:105
+msgid "Something went wrong, please try again"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:7
+#, fuzzy
+#| msgid "Change password"
+msgid "Reset Password"
+msgstr "تغییر پسوورد"
+
+#: templates/registration/forget_password_form.html:26
+#, fuzzy
+#| msgid "Your Number"
+msgid "Verify your number"
+msgstr "شماره شما"
+
+#: templates/registration/forget_password_form.html:45
+msgid "send otp"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:50
+msgid "Submit"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:51
+#: templates/registration/login.html:46 templates/registration/signup.html:51
+#: templates/registration/verify.html:50
+msgid "or"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:53
+#: templates/registration/login.html:48 templates/registration/verify.html:52
+msgid "Not have an account ?"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:53
+#: templates/registration/login.html:48 templates/registration/verify.html:52
+msgid "register"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:54
+#: templates/registration/login.html:49 templates/registration/signup.html:54
+#: templates/registration/verify.html:53
+msgid "Have you forgot your password ?"
+msgstr ""
+
+#: templates/registration/forget_password_form.html:54
+#: templates/registration/login.html:49 templates/registration/signup.html:54
+#: templates/registration/verify.html:53
+#, fuzzy
+#| msgid "Change password"
+msgid "reset password"
+msgstr "تغییر پسوورد"
+
+#: templates/registration/login.html:7 templates/registration/login.html:45
+#: templates/registration/signup.html:53
+#, fuzzy
+#| msgid "login"
+msgid "Login"
+msgstr "ورود"
+
+#: templates/registration/login.html:24
+msgid "Login to account"
+msgstr ""
+
+#: templates/registration/signup.html:7
+msgid "Sign Up"
+msgstr ""
+
+#: templates/registration/signup.html:25
+#, fuzzy
+#| msgid "Created at"
+msgid "Create new account"
+msgstr "ساخته شده در"
+
+#: templates/registration/signup.html:46
+msgid "At least 5 characters long and must contain digits and alphebet"
+msgstr ""
+
+#: templates/registration/signup.html:50
+#, fuzzy
+#| msgid "Created at"
+msgid "Create Account"
+msgstr "ساخته شده در"
+
+#: templates/registration/signup.html:53
+msgid "Already have an account ?"
+msgstr ""
+
+#: templates/registration/verify.html:7
+#, fuzzy
+#| msgid "Accounts"
+msgid "Verify Account"
+msgstr "حساب ها"
+
+#: templates/registration/verify.html:25
+msgid "Activate your account"
+msgstr ""
+
+#: templates/registration/verify.html:49
+msgid "Verify"
+msgstr ""

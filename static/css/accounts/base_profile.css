@@ -1,0 +1,118 @@
+/*
+=============== 
+Sidebar
+===============
+*/
+
+.sidebar .card-body img {
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+}
+
+.section-center .sidebar {
+    background: #bfbba620;
+}
+
+.sidebar .card-body {
+    padding: 0;
+}
+
+.sidebar ul {
+    margin-bottom: 0;
+}
+
+.sidebar li {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.sidebar li a {
+    padding: 0.75rem 2rem;
+    display: block;
+    text-decoration: none;
+    color: var(--clr-primary-3);
+}
+
+.sidebar ul .active {
+    border-left: 2px solid red;
+    pointer-events: none;
+}
+
+.sidebar li a:hover{
+    background: #6a719588;
+}
+
+/*
+===============
+Responsiveness
+===============
+*/
+
+.sidebar-container {
+    margin-bottom: 2rem;
+}
+
+.profile-forms > .row > .col-md-8 {
+    margin-bottom: 2rem;
+}
+
+
+@media (min-width: 768px) {
+    .sidebar-container {
+        margin-bottom: 0;
+    }
+    
+    .profile-forms > .row > .col-md-8 {
+        margin-bottom: 0;
+    }
+}
+
+
+/*
+=============== 
+alerts
+===============
+*/
+
+.profile-container {
+    position: relative;
+}
+
+.alert {
+    z-index: 1000;
+    position: fixed;
+    top: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 15px;
+    padding: 20px 40px;
+    border-radius: 4px;
+    animation: slideFromLeft 2s ease-in-out 1;
+    transition: var(--transition);
+}
+
+/* same width as form-card */
+.alert {
+    width: 300px;
+}
+
+.alert-success {
+    background: #D4EDDA;
+    border-left: 8px solid #3AD66E;
+}
+
+.alert-error {
+    background: #FFF3CD;
+    border-left: 8px solid #FFA502;
+}
+
+@media screen and (min-width:768px) {
+    .alert {
+        font-size: 20px;
+    }
+
+    .alert {
+        width: 400px;
+    }
+}

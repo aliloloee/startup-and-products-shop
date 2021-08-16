@@ -1,0 +1,62 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block title %}{% translate 'Sign Up' %}{% endblock %}
+
+
+{% block links %}
+
+<link rel="stylesheet" href="{% static 'css/auth-forms/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/auth-forms/signup-form.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="form-container">
+    <div class="form-center">
+        <div class="form-card">
+            <img src="{% static 'images/introduction/form-user-icon.png' %}" alt="">
+            {% include 'registration/messages.html' %}
+            <h2>{% translate 'Create new account' %}</h2>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% if field.errors %}
+                        <div class="alert alert-error" role="alert">
+                            <span>
+                                {{ field.errors|striptags|title }}
+                            </span>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+
+                {{ form.username|attr:'class:input-box' }}
+                <div class="form-box">
+                    {{ form.password|attr:'class:input-box' }}
+                    <small class="text-muted">{% translate 'At least 5 characters long and must contain digits and alphebet' %}</small>
+                </div>
+                {{ form.password1|attr:'class:input-box' }}
+
+                <input type="submit" value="{% translate 'Create Account' %}" class="btn">
+                <p class="or">{% translate 'or' %}</p>
+
+                <p>{% translate 'Already have an account ?' %} <a href="{% url 'accounts:login' %}">{% translate 'Login' %}</a></p>
+                <p>{% translate 'Have you forgot your password ?' %} <a href="{% url 'accounts:forgetPass' %}">{% translate 'reset password' %}</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

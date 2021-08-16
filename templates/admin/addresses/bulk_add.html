@@ -1,0 +1,46 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+
+<div class="content">
+    <div id="content" class="colM">
+        <h1>{% translate 'Add json file for bulk creation of provinces and related cities' %}</h1>
+        <div class="content-main">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% if field.errors %}
+                            <p class="errornote">
+                                {{ field.errors|striptags|title }}
+                            </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <fieldset class="module aligned">
+                        <div class="form-row">
+                            <div>
+                                {{ form.file }}
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="submit-row">
+                        <input type="submit" value="{% translate 'Insert' %}" style="background: var(--default-button-bg);">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

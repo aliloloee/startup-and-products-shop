@@ -1,0 +1,130 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% load widget_tweaks %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/introduction/contact.css' %}">
+{% endblock %}
+
+
+{% block title %}contact{% endblock %}
+
+
+{% block content %}
+
+<div class="contact-section">
+    <div class="contact-center container row">
+        <div class="contact-info col-lg-4 col-md-4 my-auto">
+            <h4><i class="fas fa-map-marker-alt"></i>{% translate 'Address, City, Country' %}</h4>
+            <h4><i class="fas fa-envelope"></i>{% translate 'contact@contact.com' %}</h4>
+            <h4><i class="fas fa-phone"></i>+ 000 000 0000</h4>
+            <h4><i class="fas fa-clock"></i>{% translate 'Mon - Fri 8:00 AM to 5:00 PM' %}</h4>
+        </div>
+        <div class="contact-form col-lg-8 col-md-8">
+            <h2>{% translate 'Contact US' %}</h2>
+            <form method="post" id="contact-form">
+                {% csrf_token %}
+                {% if not request.user.is_authenticated %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{form.fullname|attr:'class:text-box'}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.mobile|attr:'class:text-box'}}
+                    </div>
+                </div>
+                {% else %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{form.fullname|attr:'class:text-box'}}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    {{form.message|attr:'rows:5'}}
+                </div>
+                <input type="submit" name="submit" value="send" class="btn">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js-files %}
+<script src="{% static 'js/easyHTTP.js' %}"></script>
+
+<script>
+    function fadeOut() {
+        alert = document.querySelector('.alert');
+        if (alert) {
+            alert.classList.add('fade');
+        }
+    }
+
+    function clearAlert() {
+        alert = document.querySelector('.alert');
+        if (alert) {
+            alert.remove();
+        }
+    }
+
+    function showPageAlert (msg, colorClass) {
+        clearAlert();
+        const div = document.createElement('div');
+        const span = document.createElement('span');
+        span.appendChild(document.createTextNode(msg));
+        div.appendChild(span);
+
+        div.className = colorClass + ' alert';
+        const conatiner = document.querySelector('.contact-section');
+        conatiner.parentElement.insertBefore(div, conatiner);
+        setTimeout(() => {
+            fadeOut();
+            setTimeout(() => {
+                clearAlert();
+            }, 200);
+        }, 5000);
+        
+    }
+</script>
+
+<script>
+    const postUrl = '{% url "introduction:contact" %}';
+    const csrfToken = '{{ csrf_token }}';
+    const http = new EasyHTTP;
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        let data, formData;
+
+        formData = new FormData(form);
+        data = {
+            'fullname' : formData.get('fullname'),
+            'mobile' : formData.get('mobile'),
+            'message' : formData.get('message'),
+        }
+        
+        http.post(postUrl, csrfToken, data, function (err, res) {
+            if(!err) {
+                form.reset();
+                showPageAlert("{% translate 'Thanks for your message, we will reply as soon as possible' %}", 'alert-success')
+            }else {
+                showPageAlert("{% translate 'Something went wrong, please try again' %}", 'alert-error')
+                console.log(err);
+            }
+        }) 
+        
+    })
+</script>
+
+
+{% endblock %}

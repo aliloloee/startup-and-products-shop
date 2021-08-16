@@ -1,0 +1,129 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% load i18n %}
+
+{% load humanize %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/basket/basket.css' %}">
+{% endblock %}
+
+{% block title %}{% translate 'Cart' %}{% endblock %}
+{% block content %}
+{% include "base/main-navbar.html" %}
+
+
+
+<div class="section cart-container">
+    <div class="section-title">
+        <h2>{% translate 'the <span>Cart</span>' %}</h2>
+        <h4>{% translate 'What you have ordered' %}</h4>
+    </div>
+    {% if basket %}
+
+    <div class="section-center cart">
+        <table>
+            <tr>
+                <th>{% translate 'product' %}</th>
+                <th>{% translate 'details' %}</th>
+                <th>{% translate 'quantity' %}</th>
+                <th>{% translate 'subtotal' %}</th>
+            </tr>
+            {% for item in basket %}
+            {% with product=item.product %}
+            <tr class="product-item" data-index="{{product.id}}">
+                <td>
+                    <div class="cart-info">
+                        <img src="{{ product.transparent_image.url }}" alt="image">
+                        <div>
+                            <p class="p-0 m-0">{{ product.title }}</p>
+                            {% if product.discount_price %}
+                                <small>{{ product.discount_price|intcomma }} {% translate 'Toman' %}</small>
+                            {% else %}
+                                <small>{{ product.price|intcomma }} {% translate 'Toman' %}</small>
+                            {% endif %}
+                            <br>
+                            <button type="button" id="delete-button" data-index="{{product.id}}"
+                            class="btn delete-button">{% translate 'Delete' %}<i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <ul>
+                        {% with features=item.features %}
+                        {% for feature in features %}
+                            <li class="product-feature" data-index="{{feature.id}}">{{feature.name}}</li>
+                        {% endfor %}
+                        {% endwith %}
+
+                        {% with options=item.options %}
+                        {% for option in options %}
+                            <li class="product-option" data-index="{{option.id}}">
+                                <span class="">{{option.title}}</span> : {{option.name}}
+                            </li>
+                        {% endfor %}
+                        {% endwith %}
+                        
+                        {% if not item.features and not item.options %}
+                        <p>---</p>
+                        {% endif %}
+
+                    </ul>
+                </td>
+                <td>
+                    <input type="number" id="quantity" name="quantity" data-index="{{product.id}}" value="{{item.qty}}" step="1" min="0">
+                </td>
+                <td>{{ item.price|intcomma }} {% translate 'Toman' %}</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+        </table>
+
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>{% translate 'subtotal' %}</td>
+                    <td id="subtotal">{{basket.get_total_price|intcomma}} {% translate 'Toman' %}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="checkout">
+            <a href="{% url 'checkout:deliverychoices' %}" class="btn btn-success">{% translate 'checkout' %}</a>
+        </div>
+        
+        
+        
+    </div>
+
+    {% else %}
+    <div class="section-center no-cart">
+        <img src="{% static 'images/store/empty-cart.png' %}" alt="empty-cart">
+    </div>
+    {% endif %}
+</div>
+
+
+{% include 'base/footer.html' %}
+
+{% endblock %}
+
+
+{% block js-files %}
+<script src="{% static 'js/easyHTTP.js' %}"></script>
+
+<script>
+    const csrfToken = '{{csrf_token}}';
+    const putURL = '{% url "basket:basket_update" %}';
+    const deleteURL = '{% url "basket:basket_delete" %}';
+    const quantity_numbers = document.getElementsByName('quantity');
+    const products = document.querySelectorAll('.product-item');
+    const http = new EasyHTTP;
+</script>
+
+<script src="{% static 'js/basket/summary.js' %}"></script>
+
+{% endblock %}

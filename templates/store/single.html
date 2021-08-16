@@ -1,0 +1,205 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/store/product_customization.css' %}">
+{% endblock %}
+
+
+{% block title %}{{ product.title }}{% endblock %}
+
+
+{% block content %}
+
+{% include 'base/main-navbar.html' %}
+
+{% include 'registration/messages.html' %}
+
+
+
+
+<div class="section product">
+    <!-- presale -->
+    <div class="section-center presale-info">
+        <p>{% translate '<span>Note:</span> Since we are a young startup and the stock of our products are limited, so for now our policy for selling the products is online-presale.' %}
+        </p>
+        <p>
+            {% translate '<span>How to:</span> All you need to do is to go to product page, press <span class="pre-buy">PRE-BUY</span> button and fill the form. our colleagues will call you as soon as possible.' %}
+        </p>
+    </div>
+    <!-- end of presale -->
+
+    <div class="section-center row mt-5">
+        {% cache cache_ttl productimage LANGUAGE_CODE product.pk %}
+        <div class="col-lg-6 col-md-12 col-12">
+            {% with images|first as first %}
+                <img src="{{ first.image.url }}" alt="{{ first.alt_text }}" class="img-fluid w-100 pb-1" id="main-image">
+            {% endwith %}
+            
+            <div class="small-img-group product-images">
+                {% for image in images %}
+                <div class="small-img-col">
+                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endcache %}
+
+        <div class="col-lg-5 col-md-12 col-12 product-details">
+            <div class="product-info">
+                <h3 class="py-4 product-title">{{ product.title|title }}</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>4.7(21)</span>
+                </div>
+                <h3 class="product-prices">
+                    {% if product.discount_price %}
+                    <p class="last-price">
+                    {% translate 'Old Price :' %} <span>{{ product.price|intcomma }} {% translate 'Toman' %}</span></p>
+
+                    <p class="new-price">
+                    {% translate 'New Price :' %} <span id="product-price">{{ product.discount_price|intcomma }} {% translate 'Toman' %}</span></p>
+                    {% else %}
+                        <p class="new-price">
+                        {% translate 'Price :' %} <span id="product-price">{{ product.price|intcomma }} {% translate 'Toman' %}</span></p>
+                    {% endif %}
+                </h3>
+                <div class="product-customizations">
+                    <h3>Custmize the item :</h3>
+                    <div class="row p-3">
+                        <div class="features col-lg-6 col-md-12 col-12">
+                            {% for feature in features %}
+                            <div class="feature-container">
+                                <input type="checkbox" data-index="{{feature.id}}"
+                                name="feature" data-price="{{ feature.price }}">
+                                <label for="feature">{{feature.name|upper}} ({{feature.price|intcomma}} toman)</label>
+                            </div>
+                            {% empty %}
+                                <p>no feature</p>
+                            {% endfor %}
+                        </div>
+                        <div class="options col-lg-6 col-md-12 col-12">
+                            {% for title, options in options_details %}
+                            <select name="options" id="option-{{ forloop.counter }}" class="my-3">
+                                <option value="None">{{ title|upper }}</option>
+                                {% for option in options %}
+                                <option value="{{option.id}}" data-price="{{option.price}}">{{option.name|capfirst }} ({{option.price|intcomma}} toman)</option>
+                                {% endfor %}
+                            </select>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="purchase-info">
+                <input type="number" id="quantity" name="quantity" value="1" step="1" min="0">
+                <button type="button" class="btn btn-sm" id="add-button" value="{{product.id}}">Add to cart <i class="fas fa-shopping-cart"></i></button>
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">Pre Order <i class="fas fa-phone"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="section-center product-description">
+        <div class="p-4">
+            <h3 class="py-4">{{ product.title|title }} {% translate 'description:' %}</h3>
+            <div class="p-4">
+                {{ product.description|safe|title }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pre-Order Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"> 
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{% translate 'Pre Order' %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label class="small font-weight-bold" for="id_fullname">{{ form.fullname.label }}</label>
+                        {{ form.fullname|attr:"class:form-control"|attr:"placeholder:Fullname" }}
+                    </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold" for="id_phone_number">{{ form.phone_number.label }}</label>
+                        {{ form.phone_number|attr:"class:form-control"|attr:"placeholder:Phone-number" }}
+                    </div>
+                    <input type="submit" id="submit-pre-order-form" class="d-none">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">{% translate 'Close' %}</button>
+                <button type="button" class="btn" id="pre-order-form-btn">{% translate 'Set Pre-order' %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'base/footer.html' %}
+
+
+
+{% endblock %}
+
+
+{% block js-files %}
+<script src="{% static 'js/easyHTTP.js' %}"></script>
+
+<script>
+
+    const csrfToken = '{{csrf_token}}';
+    const postURL = '{% url "basket:basket_add" %}';
+    const getFeatureURL = '{% url "store:feature_price" pk=0 %}';
+    const getOptionURL = '{% url "store:option_price" pk=0 %}';
+    const addToBasketBtn = document.getElementById('add-button');
+    const features = document.getElementsByName('feature');
+    const options = document.getElementsByName('options');
+    const productPrice = document.getElementById('product-price');
+    const qty = document.getElementById('quantity');
+    const http = new EasyHTTP;
+
+</script>
+
+<script src="{% static 'js/store/product_customization.js' %}"></script>
+
+<!-- images -->
+<script>
+    const mainImage = document.getElementById('main-image');
+    const smallImages = document.querySelectorAll('.product-images img');
+    smallImages.forEach(img => {
+        img.addEventListener('click', e => {
+            e.preventDefault();
+            mainImage.src = img.src;
+        })
+    })
+</script>
+
+<!-- pre-order form submit -->
+<script>
+    const submit_input = document.getElementById('submit-pre-order-form');
+    const submit_btn = document.getElementById('pre-order-form-btn');
+    submit_btn.addEventListener('click', e => {
+        e.preventDefault();
+        submit_input.click();
+    })
+</script>
+
+{% endblock %}
